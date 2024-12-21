@@ -1,20 +1,40 @@
-﻿public class Solution {
+﻿
+public class Solution {
     public int LengthOfLongestSubstring(string s) {
         
-        
+        int longestSubstringCount = 0;
+        int longestSubstringCountInTheLoop = 0;
+        List<char> substringList = new List<char>(); 
+
+        // Return 0 if the substring = 0
         if (s.Length == 0)
         {
             return 0;
         }
-        
-        // Longest substring counter
-        // Loop through the string character
-        // Build a list while looping
-        // Check if the character is in the list
-        // Reset the list if the character is in
-        // Go back one character (I`m not sure)
 
-        return 0;
+        for (int i =0; i < s.Length; i++)
+        {
+            if (!substringList.Contains(s[i]))
+            {
+                substringList.Add(s[i]);
+                longestSubstringCountInTheLoop ++;
+            }
+            else
+            {
+                if (longestSubstringCountInTheLoop >= longestSubstringCount)
+                {
+                    longestSubstringCount = longestSubstringCountInTheLoop;
+                    longestSubstringCountInTheLoop = 0;
+                }
+                substringList.Clear();
+                if (i != 0)
+                {
+                    i--;
+                }
+            }
+        }       
+
+        return longestSubstringCount;
     }
 
 static void Main(string[]args)
