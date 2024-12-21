@@ -1,10 +1,12 @@
 ﻿
-public class Solution {
-    public int LengthOfLongestSubstring(string s) {
-        
+public class Solution
+{
+    public int LengthOfLongestSubstring(string s)
+    {
+
         int longestSubstringCount = 0;
         int longestSubstringCountInTheLoop = 0;
-        List<char> substringList = new List<char>(); 
+        List<char> substringList = new List<char>();
 
         // Return 0 if the substring = 0
         if (s.Length == 0)
@@ -12,12 +14,12 @@ public class Solution {
             return 0;
         }
 
-        for (int i =0; i < s.Length; i++)
+        for (int i = 0; i < s.Length; i++)
         {
             if (!substringList.Contains(s[i]))
             {
                 substringList.Add(s[i]);
-                longestSubstringCountInTheLoop ++;
+                longestSubstringCountInTheLoop++;
             }
             else
             {
@@ -32,27 +34,32 @@ public class Solution {
                     i--;
                 }
             }
-        }       
+        }
+        if (longestSubstringCountInTheLoop >= longestSubstringCount)
+        {
+            longestSubstringCount = longestSubstringCountInTheLoop;
+        }
 
         return longestSubstringCount;
     }
-    
-
-static void Main(string[]args)
-{
-    Solution s = new Solution();
-    
-    string input1 = "abcabcbb";
-    Console.WriteLine(s.LengthOfLongestSubstring(input1));
-
-    string input2 = "bbbbb";
-    Console.WriteLine(s.LengthOfLongestSubstring(input2));
-
-    string input3 = "pwwkew";
-    Console.WriteLine(s.LengthOfLongestSubstring(input3));
 
 
+    static void Main(string[] args)
+    {
+        Solution s = new Solution();
 
-}
+        string input1 = "abcabcbb";
+        Console.WriteLine(s.LengthOfLongestSubstring(input1));
+
+        string input2 = "bbbbb";
+        Console.WriteLine(s.LengthOfLongestSubstring(input2));
+
+        string input3 = "pwwkew";
+        Console.WriteLine(s.LengthOfLongestSubstring(input3));
+
+        string input4 = " ";
+        Console.WriteLine(s.LengthOfLongestSubstring(input4));
+
+    }
 
 }
