@@ -36,6 +36,7 @@ public class Solution {
 
         return longestSubstringCount;
     }
+    
 
 static void Main(string[]args)
 {
