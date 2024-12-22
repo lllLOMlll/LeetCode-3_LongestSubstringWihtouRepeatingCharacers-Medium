@@ -3,12 +3,11 @@ public class Solution
 {
     public int LengthOfLongestSubstring(string s)
     {
-
         int longestSubstringCount = 0;
         int longestSubstringCountInTheLoop = 0;
         List<char> substringList = new List<char>();
+        int startIndex = 0;  // Ajout d'un index de départ
 
-        // Return 0 if the substring = 0
         if (s.Length == 0)
         {
             return 0;
@@ -23,24 +22,20 @@ public class Solution
             }
             else
             {
-                if (longestSubstringCountInTheLoop >= longestSubstringCount)
+                if (longestSubstringCountInTheLoop > longestSubstringCount)
                 {
                     longestSubstringCount = longestSubstringCountInTheLoop;
-                    longestSubstringCountInTheLoop = 0;
                 }
+                // Au lieu de repartir du même i, on repart après le premier doublon
+                i = startIndex + 1;
+                startIndex = i;
                 substringList.Clear();
-                if (i != 0)
-                {
-                    i--;
-                }
+                substringList.Add(s[i]);
+                longestSubstringCountInTheLoop = 1;
             }
         }
-        if (longestSubstringCountInTheLoop >= longestSubstringCount)
-        {
-            longestSubstringCount = longestSubstringCountInTheLoop;
-        }
 
-        return longestSubstringCount;
+        return Math.Max(longestSubstringCount, longestSubstringCountInTheLoop);
     }
 
 
@@ -49,16 +44,22 @@ public class Solution
         Solution s = new Solution();
 
         string input1 = "abcabcbb";
-        Console.WriteLine(s.LengthOfLongestSubstring(input1));
+        Console.WriteLine("3 = " + s.LengthOfLongestSubstring(input1));
 
         string input2 = "bbbbb";
-        Console.WriteLine(s.LengthOfLongestSubstring(input2));
+        Console.WriteLine("1 = " + s.LengthOfLongestSubstring(input2));
 
         string input3 = "pwwkew";
-        Console.WriteLine(s.LengthOfLongestSubstring(input3));
+        Console.WriteLine("3 = " + s.LengthOfLongestSubstring(input3));
 
         string input4 = " ";
-        Console.WriteLine(s.LengthOfLongestSubstring(input4));
+        Console.WriteLine("1 = " + s.LengthOfLongestSubstring(input4));
+
+        string input5 = "dvdf";
+        Console.WriteLine("3 = " + s.LengthOfLongestSubstring(input5));
+
+        string input6 = "aab";
+        Console.WriteLine("2 = " + s.LengthOfLongestSubstring(input6));
 
     }
 
